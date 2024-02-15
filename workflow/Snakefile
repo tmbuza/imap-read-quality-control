@@ -1,0 +1,81 @@
+from snakemake.utils import min_version
+
+min_version("6.10.0")
+
+# Configuration file containing all user-specified settings
+configfile: "config/config.yml"
+
+report: "report/workflow.rst"
+
+include: "rules/common.smk"
+include: "rules/import_metadata.smk"
+include: "rules/import_rawreads.smk"
+include: "rules/seqkit_raw.smk"
+include: "rules/fastqc_raw.smk"
+include: "rules/multiqc_raw.smk"
+include: "rules/bbduk_trim_reads.smk"
+include: "rules/seqkit_trimmed.smk"
+include: "rules/fastqc_trimmed.smk"
+include: "rules/multiqc_trimmed.smk"
+include: "rules/bbduk_decontam.smk"
+include: "rules/seqkit_decontam.smk"
+include: "rules/fastqc_decontam.smk"
+include: "rules/multiqc_decontam.smk"
+include: "rules/plot_qc_hist.smk"
+
+include: "rules/qiime2_manifest_file.smk"
+include: "rules/qiime2_sample_metadata.smk"
+include: "rules/mothur_mapping_file.smk"
+include: "rules/mothur_sample_metadata.smk"
+include: "rules/update_samples_units_files.smk"
+include: "rules/rmd_report.smk"
+
+
+
+rule all:
+    input:
+        "index.html",
+        # "config/pe_samples.tsv",
+        # "config/pe_units.tsv",
+
+        # expand("{outdir}/{sample}_{sraNum}.fastq.gz", outdir=OUTDIR, sample=SAMPLES, sraNum=config["sraNum"]),
+        # "results/qc/seqkit1/seqkit_stats.txt",        
+        # expand("results/qc/fastqc1/{sample}_{sraNum}_fastqc.html", sample=SAMPLES, sraNum=config["sraNum"]),
+        # expand("results/qc/fastqc1/{sample}_{sraNum}_fastqc.zip", sample=SAMPLES, sraNum=config["sraNum"]),
+        # "results/qc/multiqc1/multiqc_report.html", 
+        "results/qc/multiqc1/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+
+        # expand("resources/reads/trimmed/{sample}_{sraNum}.fastq.gz", sample=SAMPLES, sraNum=config["sraNum"]),
+        # "results/qc/seqkit2/seqkit_stats.txt",        
+        # expand("results/qc/fastqc2/{sample}_{sraNum}_fastqc.html", sample=SAMPLES, sraNum=config["sraNum"]),
+        # expand("results/qc/fastqc2/{sample}_{sraNum}_fastqc.zip", sample=SAMPLES, sraNum=config["sraNum"]),
+        # "results/qc/multiqc2/multiqc_report.html", 
+        "results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+
+        # expand("resources/reads/trimmed/decontam/{sample}_{sraNum}.fastq.gz", sample=SAMPLES, sraNum=config["sraNum"]),
+        # "results/qc/seqkit3/seqkit_stats.txt",        
+        # expand("results/qc/fastqc3/{sample}_{sraNum}_fastqc.html", sample=SAMPLES, sraNum=config["sraNum"]),
+        # expand("results/qc/fastqc3/{sample}_{sraNum}_fastqc.zip", sample=SAMPLES, sraNum=config["sraNum"]),
+        # "results/qc/multiqc3/multiqc_report.html",
+        "results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+
+        "images/samples_hist.svg",
+        "images/qc_hist.svg",
+
+        "resources/metadata/qiime2_manifest_file.tsv",
+        "resources/metadata/qiime2_sample_metadata.tsv",
+
+        "resources/metadata/mothur_mapping_file.tsv",
+        "resources/metadata/mothur_sample_metadata.tsv",
+
+        "config/mothur/samples.tsv",
+        "config/mothur/units.tsv",
+        "config/qiime2/samples.tsv",
+        "config/qiime2/units.tsv",
+
+        # "dags/rulegraph.svg",
+        # "images/smkreport/screenshot.png",
+        # "images/project_tree.txt",
+
+
+ 

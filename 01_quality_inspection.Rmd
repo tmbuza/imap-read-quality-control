@@ -1,0 +1,167 @@
+# (PART) READ QC {-}
+
+# Check Raw Reads Statistics
+- Assuming that most QC tools are ready, it is time to use them to do the following:
+  - Check the quality of the reads using `fastqc`.
+  - Create a summary report of quality metrics using `multiqc`.
+  - Trim poor read at a user-specified cutoff using `bbduk.sh`.
+  - Remove contaminants `bbduk.sh`.
+
+## Statistics of raw reads
+```{r seqkit_raw, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/seqkit_raw.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+
+## FastQC on raw reads
+```{r fastqc_raw, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/fastqc_raw.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+
+![](results/qc/multiqc1/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
+
+
+# Trim Poor Reads
+
+## BBDuk trimming poor reads
+```{r bbduk_trim, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/bbduk_trim.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+## FastQC on trimmed reads
+```{r fastqc_trim, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/fastqc_trim.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+## Seqkit on trimmed reads
+```{r seqkit_trim, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/seqkit_trim.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+
+![](results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
+
+
+# Remove Contaminated Reads
+
+## BBDuk read decontamination
+```{r bbduk_decontam, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/bbduk_decontam.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+## FastQC on decontaminated reads
+```{r fastqc_decontam, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/fastqc_decontam.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+## Seqkit on decontaminated reads
+```{r seqkit_decontam, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/seqkit_decontam.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+
+
+
+![](results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
+
+
+# View Processed Read Status
+
+
+```{r plot_qc_hist, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/plot_qc_hist.R"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```r\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+![](images/qc_hist.svg)
+

@@ -1,0 +1,17 @@
+toos-resources
+essential-read-qc-tools
+required-qc-resources
+basic-yaml-file-for-read-qc-environment.yml
+conda-environment
+check-raw-reads-statistics
+statistics-of-raw-reads
+fastqc-on-raw-reads
+trim-poor-reads
+bbduk-trimming-poor-reads
+fastqc-on-trimmed-reads
+seqkit-on-trimmed-reads
+remove-contaminated-reads
+bbduk-read-decontamination
+fastqc-on-decontaminated-reads
+seqkit-on-decontaminated-reads
+view-processed-read-status

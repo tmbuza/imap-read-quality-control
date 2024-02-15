@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>4 Remove Contaminated Reads | IMAP: Integrated Microbiome Analysis Pipelines</title>
+<meta name="author" content="Teresia Mrema-Buza">
+<meta name="description" content="4.1 BBDuk read decontamination #!/bin/bash echo PROGRESS: Read decontamination cd resources/reads/trimmed for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`  do  bbduk.sh -Xmx3g \  ...">
+<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta property="og:title" content="4 Remove Contaminated Reads | IMAP: Integrated Microbiome Analysis Pipelines">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://tmbuza.github.io/imap-project-overview/remove-contaminated-reads.html">
+<meta property="og:image" content="https://tmbuza.github.io/imap-project-overview/images/planning.png">
+<meta property="og:description" content="4.1 BBDuk read decontamination #!/bin/bash echo PROGRESS: Read decontamination cd resources/reads/trimmed for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`  do  bbduk.sh -Xmx3g \  ...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 Remove Contaminated Reads | IMAP: Integrated Microbiome Analysis Pipelines">
+<meta name="twitter:description" content="4.1 BBDuk read decontamination #!/bin/bash echo PROGRESS: Read decontamination cd resources/reads/trimmed for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`  do  bbduk.sh -Xmx3g \  ...">
+<meta name="twitter:image" content="https://tmbuza.github.io/imap-project-overview/images/planning.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Sen-0.4.8/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/Bitter-0.4.8/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="End-to-End Practical User Guides Using Integrated Approaches"><big>IMAP:</big> Integrated Microbiome Analysis Pipelines</a>:
+        <small class="text-muted">End-to-End Practical User Guides Using Integrated Approaches</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Mastering Microbiome Read Quality</a></li>
+<li><a class="" href="toos-resources.html"><span class="header-section-number">1</span> Tools, Resources, and Environments</a></li>
+<li class="book-part">READ QC</li>
+<li><a class="" href="check-raw-reads-statistics.html"><span class="header-section-number">2</span> Check Raw Reads Statistics</a></li>
+<li><a class="" href="trim-poor-reads.html"><span class="header-section-number">3</span> Trim Poor Reads</a></li>
+<li><a class="active" href="remove-contaminated-reads.html"><span class="header-section-number">4</span> Remove Contaminated Reads</a></li>
+<li><a class="" href="view-processed-read-status.html"><span class="header-section-number">5</span> View Processed Read Status</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/tmbuza/imap-read-quality-control.git">View book source <i class="fas fa-air-freshener"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="remove-contaminated-reads" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Remove Contaminated Reads<a class="anchor" aria-label="anchor" href="#remove-contaminated-reads"><i class="fas fa-link"></i></a>
+</h1>
+<div id="bbduk-read-decontamination" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> BBDuk read decontamination<a class="anchor" aria-label="anchor" href="#bbduk-read-decontamination"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="remove-contaminated-reads.html#cb8-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb8-2"><a href="remove-contaminated-reads.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="remove-contaminated-reads.html#cb8-3" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: Read decontamination</span>
+<span id="cb8-4"><a href="remove-contaminated-reads.html#cb8-4" tabindex="-1"></a><span class="bu">cd</span> resources/reads/trimmed</span>
+<span id="cb8-5"><a href="remove-contaminated-reads.html#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="remove-contaminated-reads.html#cb8-6" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="kw">`</span><span class="fu">ls</span> <span class="at">-1</span> <span class="pp">*</span>_1.fastq.gz <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/_1.fastq.gz//'</span><span class="kw">`</span></span>
+<span id="cb8-7"><a href="remove-contaminated-reads.html#cb8-7" tabindex="-1"></a>  <span class="cf">do</span></span>
+<span id="cb8-8"><a href="remove-contaminated-reads.html#cb8-8" tabindex="-1"></a>  <span class="ex">bbduk.sh</span> <span class="at">-Xmx3g</span> <span class="dt">\</span></span>
+<span id="cb8-9"><a href="remove-contaminated-reads.html#cb8-9" tabindex="-1"></a>    in1=<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
+<span id="cb8-10"><a href="remove-contaminated-reads.html#cb8-10" tabindex="-1"></a>    in2=<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
+<span id="cb8-11"><a href="remove-contaminated-reads.html#cb8-11" tabindex="-1"></a>    out1=decontam/<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
+<span id="cb8-12"><a href="remove-contaminated-reads.html#cb8-12" tabindex="-1"></a>    out2=decontam/<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
+<span id="cb8-13"><a href="remove-contaminated-reads.html#cb8-13" tabindex="-1"></a>    outm1=decontam/matchedphix/<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
+<span id="cb8-14"><a href="remove-contaminated-reads.html#cb8-14" tabindex="-1"></a>    outm2=decontam/matchedphix/<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
+<span id="cb8-15"><a href="remove-contaminated-reads.html#cb8-15" tabindex="-1"></a>    ref=~/bbmap/resources/phix174_ill.ref.fa.gz <span class="dt">\</span></span>
+<span id="cb8-16"><a href="remove-contaminated-reads.html#cb8-16" tabindex="-1"></a>    k=25 <span class="dt">\</span></span>
+<span id="cb8-17"><a href="remove-contaminated-reads.html#cb8-17" tabindex="-1"></a>    hdist=1 <span class="dt">\</span></span>
+<span id="cb8-18"><a href="remove-contaminated-reads.html#cb8-18" tabindex="-1"></a>    overwrite=True</span>
+<span id="cb8-19"><a href="remove-contaminated-reads.html#cb8-19" tabindex="-1"></a>  <span class="cf">done</span></span></code></pre></div>
+</div>
+<div id="fastqc-on-decontaminated-reads" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> FastQC on decontaminated reads<a class="anchor" aria-label="anchor" href="#fastqc-on-decontaminated-reads"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="remove-contaminated-reads.html#cb9-1" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="remove-contaminated-reads.html#cb9-2" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb9-3"><a href="remove-contaminated-reads.html#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="remove-contaminated-reads.html#cb9-4" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: FastQC <span class="at">-</span> Getting read quality scores of decontaminated reads.</span>
+<span id="cb9-5"><a href="remove-contaminated-reads.html#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="remove-contaminated-reads.html#cb9-6" tabindex="-1"></a><span class="va">INPUTDIR</span><span class="op">=</span><span class="st">"resources/reads/trimmed/decontam"</span></span>
+<span id="cb9-7"><a href="remove-contaminated-reads.html#cb9-7" tabindex="-1"></a><span class="va">FASTQC</span><span class="op">=</span><span class="st">"results/qc/fastqc3"</span></span>
+<span id="cb9-8"><a href="remove-contaminated-reads.html#cb9-8" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${FASTQC}</span><span class="st">"</span></span>
+<span id="cb9-9"><a href="remove-contaminated-reads.html#cb9-9" tabindex="-1"></a><span class="ex">fastqc</span> <span class="st">"</span><span class="va">${INPUTDIR}</span><span class="st">"</span>/<span class="pp">*</span>.fastq.gz <span class="at">-o</span> <span class="st">"</span><span class="va">${FASTQC}</span><span class="st">"</span></span></code></pre></div>
+</div>
+<div id="seqkit-on-decontaminated-reads" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Seqkit on decontaminated reads<a class="anchor" aria-label="anchor" href="#seqkit-on-decontaminated-reads"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="remove-contaminated-reads.html#cb10-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb10-2"><a href="remove-contaminated-reads.html#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="remove-contaminated-reads.html#cb10-3" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: Getting stats of the decontaminated reads.</span>
+<span id="cb10-4"><a href="remove-contaminated-reads.html#cb10-4" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="remove-contaminated-reads.html#cb10-5" tabindex="-1"></a><span class="va">INPUTDIR</span><span class="op">=</span><span class="st">"resources/reads/trimmed/decontam"</span></span>
+<span id="cb10-6"><a href="remove-contaminated-reads.html#cb10-6" tabindex="-1"></a><span class="va">SEQKIT</span><span class="op">=</span><span class="st">"results/qc/seqkit3"</span></span>
+<span id="cb10-7"><a href="remove-contaminated-reads.html#cb10-7" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${SEQKIT}</span><span class="st">"</span></span>
+<span id="cb10-8"><a href="remove-contaminated-reads.html#cb10-8" tabindex="-1"></a><span class="ex">seqkit</span> stat <span class="st">"</span><span class="va">${INPUTDIR}</span><span class="st">"</span>/<span class="pp">*</span>.fastq.gz <span class="op">&gt;</span><span class="st">"</span><span class="va">${SEQKIT}</span><span class="st">"</span>/seqkit_stats.txt</span></code></pre></div>
+<div class="inline-figure"><img src="results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg"></div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="trim-poor-reads.html"><span class="header-section-number">3</span> Trim Poor Reads</a></div>
+<div class="next"><a href="view-processed-read-status.html"><span class="header-section-number">5</span> View Processed Read Status</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#remove-contaminated-reads"><span class="header-section-number">4</span> Remove Contaminated Reads</a></li>
+<li><a class="nav-link" href="#bbduk-read-decontamination"><span class="header-section-number">4.1</span> BBDuk read decontamination</a></li>
+<li><a class="nav-link" href="#fastqc-on-decontaminated-reads"><span class="header-section-number">4.2</span> FastQC on decontaminated reads</a></li>
+<li><a class="nav-link" href="#seqkit-on-decontaminated-reads"><span class="header-section-number">4.3</span> Seqkit on decontaminated reads</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/tmbuza/imap-read-quality-control.git/blob/gh-pages/01_quality_inspection.Rmd">View source <i class="fas fa-air-freshener"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/tmbuza/imap-read-quality-control.git/edit/gh-pages/01_quality_inspection.Rmd">Edit this page <i class="fas fa-air-freshener"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 mt-3">
+        <p><strong><u><a class="text-light" href="https://microbiome.complexdatainsights.com"><big>IMAP:</big> Integrated Microbiome Analysis Pipelines</a></u></strong>: End-to-End Practical User Guides Using Integrated Approaches</p>
+<br><p>Authored by Teresia Mrema-Buza, Last updated: <b>2024-02-15</b>.</p>
+<br>
+</div>
+      <div class="col-12 col-md-6 mt-3">
+        <p>Note: This practical guide was created using the <a class="text-light" href="https://bookdown.org/yihui/bookdown/">bookdown</a> R package, styled with the modern bs4_book format.</p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+</body>
+</html>

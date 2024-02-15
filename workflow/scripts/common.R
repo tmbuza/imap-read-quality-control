@@ -1,0 +1,50 @@
+set.seed(110912)
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  comment = NA,
+  fig.show='asis',
+  dev = 'png',
+  fig.align='center',
+  out.width = "70%",
+  fig.width = 7,
+  fig.asp = 0.7,
+  fig.show = "asis"
+)
+
+
+# theme_cdi<- function () { 
+#   theme_bw(base_size=10, base_family="Helvetica") +
+#     theme(
+#       axis.line = element_blank(), strip.background = element_blank(),
+#       plot.title = element_text(size = 16, face = "bold"),
+#       plot.title = element_text(hjust = 0.5),
+#       plot.subtitle = element_text(hjust = 0.5),
+#       axis.text = element_text(hjust = 1, size = 12),
+#       axis.title=element_text(size=14,face="normal"),
+#       axis.text.x = element_text(angle = 90, vjust = .5, hjust = 1),
+#       plot.title = element_text(hjust = 0.5),
+#       plot.subtitle = element_text(hjust = 0.5),
+#       plot.margin=unit(c(1,1,1.5,1.2),"cm"),
+#       plot.margin=unit(c(1,1,1.2,1.2),"cm"),
+#       legend.key.size = unit(5, "mm"),
+#       legend.position ="right",
+#       legend.direction = "vertical",
+#       legend.title = element_text(color = "blue4", size = 12),
+#       legend.text = element_text(color = "black", size = 10)
+#     )
+# }
+
+
+theme_cdi <- function () { 
+  theme_classic(base_size=8, base_family="Helvetica") +
+  theme(legend.key.size = unit(5, "mm")) +
+  theme(legend.position ="right") +
+  theme(legend.direction = "vertical") +
+  theme(legend.title = element_text(color = "black", size = 12, face = "bold")) +
+  theme(legend.text = element_text(color = "black", size = 10)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = .5, hjust = 1))
+}
