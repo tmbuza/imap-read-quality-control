@@ -45,7 +45,7 @@ source("_common.R")
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 
-# <big>Mastering Microbiome Read Quality</big> {-#read-quality}
+# <u>IMAP-Part 04</u>: Mastering Microbiome Read Quality {-#read-quality-control}
 
 <br>
 <br>

@@ -16,4 +16,4 @@ mothur_mapping_file <- read_table("results/qc/seqkit1/seqkit_stats.txt", show_co
   select(`#sample_id` = sample_id, file1, file2)
 
 mothur_mapping_file %>%
-  write_tsv("resources/metadata/mothur_mapping_file.tsv")
+  write_tsv("resources/mothur_mapping_file.tsv")

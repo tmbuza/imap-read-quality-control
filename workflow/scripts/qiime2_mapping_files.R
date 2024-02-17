@@ -15,14 +15,14 @@ qiime2_manifest_file <- read_table("results/qc/seqkit1/seqkit_stats.txt", show_c
   select("sample-id" = sample_id, "forward-absolute-filepath" = file, "reverse-absolute-filepath" = file2)
 
 qiime2_manifest_file %>%
-  write_tsv("resources/metadata/qiime2_manifest_file.tsv")
+  write_tsv("resources/qiime2_manifest_file.tsv")
 
 
 # qiime2_metadata_file <- left_join(
-#   qiime2_manifest_file, read_tsv("resources/metadata/pe_metadata.tsv", show_col_types = FALSE), 
+#   qiime2_manifest_file, read_tsv("resources/pe_metadata.tsv", show_col_types = FALSE), 
 #   by = c("sample-id"="sample_name")) %>%
 #   select(-fq1, -fq2) %>%
 #   as.data.frame()
 
-#   write_tsv(qiime2_metadata_file, "resources/metadata/qiime2_metadata_file.tsv")
+#   write_tsv(qiime2_metadata_file, "resources/qiime2_metadata_file.tsv")
 

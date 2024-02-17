@@ -5,6 +5,11 @@ min_version("6.10.0")
 # Configuration file containing all user-specified settings
 configfile: "config/config.yml"
 
+# # Debug information
+# print("Configuration:")
+# print(config)
+
+
 report: "report/workflow.rst"
 
 include: "rules/common.smk"
@@ -22,56 +27,59 @@ include: "rules/seqkit_decontam.smk"
 include: "rules/fastqc_decontam.smk"
 include: "rules/multiqc_decontam.smk"
 include: "rules/plot_qc_hist.smk"
-
 include: "rules/qiime2_manifest_file.smk"
 include: "rules/qiime2_sample_metadata.smk"
 include: "rules/mothur_mapping_file.smk"
 include: "rules/mothur_sample_metadata.smk"
 include: "rules/update_samples_units_files.smk"
-include: "rules/rmd_report.smk"
+# include: "rules/rmd_report.smk"
 
 
-
-rule all:
+rule FINAL_TARGET:
     input:
-        "index.html",
+        "docs/index.html",
+        # "reports/snakemake_report.html",
+        # "reports/project_tree.txt",
+        # "dags/rulegraph.png",
+        # "dags/rulegraph.svg",   
         # "config/pe_samples.tsv",
         # "config/pe_units.tsv",
+        # "results/qc/seqkit1/seqkit_stats.txt", 
 
         # expand("{outdir}/{sample}_{sraNum}.fastq.gz", outdir=OUTDIR, sample=SAMPLES, sraNum=config["sraNum"]),
         # "results/qc/seqkit1/seqkit_stats.txt",        
         # expand("results/qc/fastqc1/{sample}_{sraNum}_fastqc.html", sample=SAMPLES, sraNum=config["sraNum"]),
         # expand("results/qc/fastqc1/{sample}_{sraNum}_fastqc.zip", sample=SAMPLES, sraNum=config["sraNum"]),
         # "results/qc/multiqc1/multiqc_report.html", 
-        "results/qc/multiqc1/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        # "results/qc/multiqc1/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
 
         # expand("resources/reads/trimmed/{sample}_{sraNum}.fastq.gz", sample=SAMPLES, sraNum=config["sraNum"]),
         # "results/qc/seqkit2/seqkit_stats.txt",        
         # expand("results/qc/fastqc2/{sample}_{sraNum}_fastqc.html", sample=SAMPLES, sraNum=config["sraNum"]),
         # expand("results/qc/fastqc2/{sample}_{sraNum}_fastqc.zip", sample=SAMPLES, sraNum=config["sraNum"]),
         # "results/qc/multiqc2/multiqc_report.html", 
-        "results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        # "results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
 
         # expand("resources/reads/trimmed/decontam/{sample}_{sraNum}.fastq.gz", sample=SAMPLES, sraNum=config["sraNum"]),
         # "results/qc/seqkit3/seqkit_stats.txt",        
         # expand("results/qc/fastqc3/{sample}_{sraNum}_fastqc.html", sample=SAMPLES, sraNum=config["sraNum"]),
         # expand("results/qc/fastqc3/{sample}_{sraNum}_fastqc.zip", sample=SAMPLES, sraNum=config["sraNum"]),
         # "results/qc/multiqc3/multiqc_report.html",
-        "results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        # "results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
 
-        "images/samples_hist.svg",
-        "images/qc_hist.svg",
+        # "images/samples_hist.svg",
+        # "images/qc_hist.svg",
 
-        "resources/metadata/qiime2_manifest_file.tsv",
-        "resources/metadata/qiime2_sample_metadata.tsv",
+        # "resources/qiime2_manifest_file.tsv",
+        # "resources/qiime2_sample_metadata.tsv",
 
-        "resources/metadata/mothur_mapping_file.tsv",
-        "resources/metadata/mothur_sample_metadata.tsv",
+        # "resources/mothur_mapping_file.tsv",
+        # "resources/mothur_sample_metadata.tsv",
 
-        "config/mothur/samples.tsv",
-        "config/mothur/units.tsv",
-        "config/qiime2/samples.tsv",
-        "config/qiime2/units.tsv",
+        # "config/mothur/samples.tsv",
+        # "config/mothur/units.tsv",
+        # "config/qiime2/samples.tsv",
+        # "config/qiime2/units.tsv",
 
         # "dags/rulegraph.svg",
         # "images/smkreport/screenshot.png",
@@ -79,3 +87,57 @@ rule all:
 
 
  
+# Rule to generate the rule graph and create the dags folder if it doesn't exist
+rule generate_rulegraph:
+    output:
+        directory("dags"),
+        "dags/rulegraph.png",
+        "dags/rulegraph.svg",
+
+    shell:
+        """
+        snakemake --unlock;
+        mkdir -p {output[0]};
+        snakemake --rulegraph | dot -Tpng > {output[1]};
+        snakemake --rulegraph | dot -Tsvg > {output[2]};
+        """
+
+# Rule to generate a directory tree
+rule generate_tree:
+    output:
+        directory("output"),
+        "reports/project_tree.txt"
+    shell:
+        """
+        snakemake --unlock \
+        && mkdir -p {output[0]} \
+        && echo "Project Tree" > {output[1]} \
+        && tree -L 2 . >> {output[1]}
+        """
+
+# Rule to generate SnakeMake report
+rule snakemake_report:
+    output:
+        "reports/snakemake_report.html"
+    shell:
+        "snakemake --keep-going --use-conda --report {output[0]}"
+
+
+rule render_bs4_book:
+    input:
+        "index.Rmd",
+        "reports/project_tree.txt",
+        "reports/snakemake_report.html",
+        "dags/rulegraph.png",
+        "dags/rulegraph.svg",   
+        "config/pe_samples.tsv",
+        "config/pe_units.tsv",
+        # "results/qc/multiqc1/multiqc_report.html",
+        # "results/qc/multiqc2/multiqc_report.html",
+        "results/qc/multiqc3/multiqc_report.html",
+
+
+    output:
+        "docs/index.html"
+    shell:
+        "R -e 'bookdown::render_book(input = \"index.Rmd\", output_format = \"bookdown::bs4_book\", output_dir = \"docs\")'"

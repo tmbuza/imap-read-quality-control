@@ -1,0 +1,108 @@
+Project Tree
+.
+├── 00-preface.Rmd
+├── 01_quality_inspection.Rmd
+├── 99-appendix.Rmd
+├── 999-references.Rmd
+├── 9999-footer.Rmd
+├── LICENSE
+├── README.md
+├── _bookdown.yml
+├── _common.R
+├── _output.yml
+├── bs4_template.html
+├── config
+│   ├── config.yml
+│   ├── mothur
+│   ├── pbs
+│   ├── pe_samples.tsv
+│   ├── pe_units.tsv
+│   ├── qiime2
+│   ├── samples.tsv
+│   ├── se_samples.tsv
+│   ├── se_units.tsv
+│   ├── slurm
+│   └── units.tsv
+├── dags
+│   ├── rulegraph.png
+│   └── rulegraph.svg
+├── docs
+│   ├── 00-preface.md
+│   ├── 01_quality_inspection.md
+│   ├── 01_read_statistics.md
+│   ├── 02_quality_inspection.md
+│   ├── 404.html
+│   ├── 99-appendix.md
+│   ├── 999-references.md
+│   ├── 9999-footer.md
+│   ├── check-raw-reads-statistics.html
+│   ├── check-raw-reads.html
+│   ├── dags
+│   ├── images
+│   ├── imap-github-repos.html
+│   ├── index.html
+│   ├── index.md
+│   ├── libs
+│   ├── mastering-microbiome-read-quality-tools-resources-and-environments.html
+│   ├── read-qc-rulegraph.html
+│   ├── read-simple-statistics.html
+│   ├── reference-keys.txt
+│   ├── references.html
+│   ├── remove-contaminated-reads.html
+│   ├── results
+│   ├── search.json
+│   ├── session-information.html
+│   ├── snakemake-rule-graph-imap-part-04.html
+│   ├── start-read-quality-control.html
+│   ├── style.css
+│   ├── tools-resources-and-environments-toos-resources.html
+│   ├── toos-resources.html
+│   ├── trim-poor-reads.html
+│   └── view-processed-read-status.html
+├── images
+│   ├── project_tree.txt
+│   ├── qc_hist.png
+│   ├── qc_hist.svg
+│   ├── read_qc.png
+│   ├── samples_hist.png
+│   ├── samples_hist.svg
+│   └── smkreport
+├── imap-read-qc.Rproj
+├── index.Rmd
+├── library
+│   ├── apa.csl
+│   ├── imap.bib
+│   ├── packages.bib
+│   └── references.bib
+├── output
+├── read-qc.rds
+├── renv
+│   ├── activate.R
+│   ├── library
+│   ├── settings.json
+│   └── staging
+├── renv.lock
+├── reports
+│   ├── project_tree.txt
+│   └── snakemake_report.html
+├── resources
+│   ├── mothur_mapping_file.tsv
+│   ├── mothur_sample_metadata.tsv
+│   ├── pe_metadata.tsv
+│   ├── qiime2_manifest_file.tsv
+│   ├── qiime2_sample_metadata.tsv
+│   ├── reads
+│   ├── se_metadata.tsv
+│   └── session_info.txt
+├── results
+│   └── qc
+├── style.css
+└── workflow
+    ├── Snakefile
+    ├── envs
+    ├── report
+    ├── rules
+    ├── schemas
+    └── scripts
+
+30 directories, 75 files

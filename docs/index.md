@@ -2,7 +2,7 @@
 title: "<big>IMAP:</big> Integrated Microbiome Analysis Pipelines"
 subtitle: "End-to-End Practical User Guides Using Integrated Approaches"
 date:
-- <b>2024-02-15</b>
+- <b>2024-02-17</b>
 author: Teresia Mrema-Buza
 site: bookdown::bookdown_site
 documentclass: book
@@ -43,7 +43,7 @@ description: |
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 
-# <big>Mastering Microbiome Read Quality</big> {-#read-quality}
+# <u>IMAP-Part 04</u>: Mastering Microbiome Read Quality {-#read-quality-control}
 
 <br>
 <br>

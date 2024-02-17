@@ -1,6 +1,6 @@
-METADATA="../imap-sample-metadata/resources/metadata"
+METADATA="../imap-sample-metadata/resources/"
 SAMPLESUNITS="../imap-sample-metadata/config"
-OUTDIR="resources/metadata"
+OUTDIR="resources/"
 CONFIG="config"
 
 echo PROGRESS: Importing processed metadata

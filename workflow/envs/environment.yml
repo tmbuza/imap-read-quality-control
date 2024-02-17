@@ -4,12 +4,10 @@ channels:
   - bioconda
   - biobakery
 dependencies:
-  - snakemake =7.19.1
-  - snakemake-minimal =7.19.1
-  - snakedeploy =0.8.6
-  - seqkit =2.3.1
-  - fastqc =0.12.1
-  - multiqc =1.14
-  - trimmomatic =0.39
-  - bbmap =39.01
-  - kneaddata =0.12.0
+  - seqkit
+  - fastqc
+  - multiqc
+  - trimmomatic
+  - bbmap
+  - kneaddata
+  - cutadapt
