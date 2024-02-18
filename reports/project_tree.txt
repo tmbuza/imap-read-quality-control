@@ -7,6 +7,7 @@ Project Tree
 ├── 9999-footer.Rmd
 ├── LICENSE
 ├── README.md
+├── Rplots.pdf
 ├── _bookdown.yml
 ├── _common.R
 ├── _output.yml
@@ -105,4 +106,4 @@ Project Tree
     ├── schemas
     └── scripts
 
-30 directories, 75 files
+30 directories, 76 files

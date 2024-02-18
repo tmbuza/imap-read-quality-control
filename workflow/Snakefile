@@ -44,7 +44,7 @@ rule FINAL_TARGET:
         # "dags/rulegraph.svg",   
         # "config/pe_samples.tsv",
         # "config/pe_units.tsv",
-        # "results/qc/seqkit1/seqkit_stats.txt", 
+
 
         # expand("{outdir}/{sample}_{sraNum}.fastq.gz", outdir=OUTDIR, sample=SAMPLES, sraNum=config["sraNum"]),
         # "results/qc/seqkit1/seqkit_stats.txt",        
@@ -70,21 +70,16 @@ rule FINAL_TARGET:
         # "images/samples_hist.svg",
         # "images/qc_hist.svg",
 
-        # "resources/qiime2_manifest_file.tsv",
-        # "resources/qiime2_sample_metadata.tsv",
+        "resources/qiime2_manifest_file.tsv",
+        "resources/qiime2_sample_metadata.tsv",
 
-        # "resources/mothur_mapping_file.tsv",
-        # "resources/mothur_sample_metadata.tsv",
+        "resources/mothur_mapping_file.tsv",
+        "resources/mothur_sample_metadata.tsv",
 
-        # "config/mothur/samples.tsv",
-        # "config/mothur/units.tsv",
-        # "config/qiime2/samples.tsv",
-        # "config/qiime2/units.tsv",
-
-        # "dags/rulegraph.svg",
-        # "images/smkreport/screenshot.png",
-        # "images/project_tree.txt",
-
+        "config/mothur/samples.tsv",
+        "config/mothur/units.tsv",
+        "config/qiime2/samples.tsv",
+        "config/qiime2/units.tsv",
 
  
 # Rule to generate the rule graph and create the dags folder if it doesn't exist
@@ -128,15 +123,12 @@ rule render_bs4_book:
         "index.Rmd",
         "reports/project_tree.txt",
         "reports/snakemake_report.html",
-        "dags/rulegraph.png",
-        "dags/rulegraph.svg",   
-        "config/pe_samples.tsv",
-        "config/pe_units.tsv",
-        # "results/qc/multiqc1/multiqc_report.html",
-        # "results/qc/multiqc2/multiqc_report.html",
-        "results/qc/multiqc3/multiqc_report.html",
-
-
+        "dags/rulegraph.svg", 
+        "results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        "results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        "results/qc/multiqc1/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
+        "images/samples_hist.svg",
+        "images/qc_hist.svg",
     output:
         "docs/index.html"
     shell:
