@@ -67,8 +67,8 @@ rule FINAL_TARGET:
         # "results/qc/multiqc3/multiqc_report.html",
         # "results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
 
-        # "images/samples_hist.svg",
-        # "images/qc_hist.svg",
+        # "figures/samples_hist.svg",
+        # "figures/qc_hist.svg",
 
         "resources/qiime2_manifest_file.tsv",
         "resources/qiime2_sample_metadata.tsv",
@@ -127,8 +127,8 @@ rule render_bs4_book:
         "results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
         "results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
         "results/qc/multiqc1/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg",
-        "images/samples_hist.svg",
-        "images/qc_hist.svg",
+        "figures/samples_hist.svg",
+        "figures/qc_hist.svg",
     output:
         "docs/index.html"
     shell:
