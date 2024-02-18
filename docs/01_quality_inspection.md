@@ -22,7 +22,7 @@ seqkit stat "${INPUTDIR}"/*.fastq.gz >"${SEQKIT}"/seqkit_stats.txt
 ```
 
 
-## FastQC on raw reads
+## FastQC - MultiQC on raw reads
 ```bash
 
 #!/bin/bash
@@ -33,6 +33,18 @@ INPUTDIR="resources/reads"
 FASTQC="results/qc/fastqc1"
 mkdir -p "${FASTQC}"
 fastqc "${INPUTDIR}"/*.fastq.gz -o "${FASTQC}"
+
+```
+
+```bash
+#!/bin/bash
+
+echo PROGRESS: MultiQC - Getting summary of raw read quality scores.
+
+FASTQC="results/qc/fastqc1"
+MULTIQC="results/qc/multiqc1"
+mkdir -p "${MULTIQC}"
+multiqc --force --data-dir "${FASTQC}" -o "${MULTIQC}" --export
 
 ```
 
@@ -63,7 +75,7 @@ for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`
 
 ```
 
-## FastQC on trimmed reads
+## FastQC - MultiQC on trimmed reads
 ```bash
 
 #!/bin/bash
@@ -76,6 +88,23 @@ mkdir -p "${FASTQC}"
 fastqc "${INPUTDIR}"/*.fastq.gz -o "${FASTQC}"
 
 ```
+
+
+```bash
+#!/bin/bash
+
+echo PROGRESS: MultiQC - Getting summary of trimmed read quality scores.
+
+FASTQC="results/qc/fastqc2"
+MULTIQC="results/qc/multiqc2"
+mkdir -p "${MULTIQC}"
+multiqc --force --data-dir "${FASTQC}" -o "${MULTIQC}" --export
+
+```
+
+
+![](results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
+
 
 ## Seqkit on trimmed reads
 ```bash
@@ -90,10 +119,6 @@ mkdir -p "${SEQKIT}"
 seqkit stat "${INPUTDIR}"/*.fastq.gz >"${SEQKIT}"/seqkit_stats.txt
 
 ```
-
-
-![](results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
-
 
 # Remove Contaminated Reads
 
@@ -121,7 +146,7 @@ for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`
 
 ```
 
-## FastQC on decontaminated reads
+## FastQC - MultiQC on decontaminated reads
 ```bash
 
 #!/bin/bash
@@ -134,6 +159,30 @@ mkdir -p "${FASTQC}"
 fastqc "${INPUTDIR}"/*.fastq.gz -o "${FASTQC}"
 
 ```
+
+
+
+```
+## Warning in readLines(script_path): incomplete final line found on
+## 'workflow/scripts/multiqc_decontam.sh'
+```
+
+```bash
+#!/bin/bash
+
+echo PROGRESS: MultiQC - Getting summary of decontaminated read quality scores.
+
+FASTQC="results/qc/fastqc3"
+MULTIQC="results/qc/multiqc3"
+
+mkdir -p "${MULTIQC}"
+multiqc --force --data-dir "${FASTQC}" -o "${MULTIQC}" --export
+
+```
+
+
+![](results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
+
 
 ## Seqkit on decontaminated reads
 ```bash
@@ -149,9 +198,6 @@ seqkit stat "${INPUTDIR}"/*.fastq.gz >"${SEQKIT}"/seqkit_stats.txt
 ```
 
 
-
-
-![](results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
 
 
 # View Processed Read Status

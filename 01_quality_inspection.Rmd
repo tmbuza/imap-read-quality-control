@@ -23,10 +23,24 @@ cat("\n```")
 ```
 
 
-## FastQC on raw reads
+## FastQC - MultiQC on raw reads
 ```{r fastqc_raw, results='asis', echo=FALSE}
 # Specify the path to your shell script file
 script_path <- "workflow/scripts/fastqc_raw.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+```{r multiqc_raw, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/multiqc_raw.sh"
 
 # Read the content of the shell script file
 script_content <- readLines(script_path)
@@ -59,7 +73,7 @@ cat("\n```")
 
 ```
 
-## FastQC on trimmed reads
+## FastQC - MultiQC on trimmed reads
 ```{r fastqc_trim, results='asis', echo=FALSE}
 # Specify the path to your shell script file
 script_path <- "workflow/scripts/fastqc_trim.sh"
@@ -73,6 +87,25 @@ cat(script_content, sep = "\n", collapse = "\n")
 cat("\n```")
 
 ```
+
+
+```{r multiqc_trim, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/multiqc_trim.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+
+![](results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
+
 
 ## Seqkit on trimmed reads
 ```{r seqkit_trim, results='asis', echo=FALSE}
@@ -88,10 +121,6 @@ cat(script_content, sep = "\n", collapse = "\n")
 cat("\n```")
 
 ```
-
-
-![](results/qc/multiqc2/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
-
 
 # Remove Contaminated Reads
 
@@ -110,7 +139,7 @@ cat("\n```")
 
 ```
 
-## FastQC on decontaminated reads
+## FastQC - MultiQC on decontaminated reads
 ```{r fastqc_decontam, results='asis', echo=FALSE}
 # Specify the path to your shell script file
 script_path <- "workflow/scripts/fastqc_decontam.sh"
@@ -124,6 +153,25 @@ cat(script_content, sep = "\n", collapse = "\n")
 cat("\n```")
 
 ```
+
+
+```{r multiqc_decontam, results='asis', echo=FALSE}
+# Specify the path to your shell script file
+script_path <- "workflow/scripts/multiqc_decontam.sh"
+
+# Read the content of the shell script file
+script_content <- readLines(script_path)
+
+# Print the content in the R Markdown document
+cat("```bash\n")
+cat(script_content, sep = "\n", collapse = "\n")
+cat("\n```")
+
+```
+
+
+![](results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
+
 
 ## Seqkit on decontaminated reads
 ```{r seqkit_decontam, results='asis', echo=FALSE}
@@ -141,9 +189,6 @@ cat("\n```")
 ```
 
 
-
-
-![](results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg)
 
 
 # View Processed Read Status

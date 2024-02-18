@@ -99,53 +99,64 @@
 <h2>
 <span class="header-section-number">4.1</span> BBDuk read decontamination<a class="anchor" aria-label="anchor" href="#bbduk-read-decontamination"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="remove-contaminated-reads.html#cb8-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb8-2"><a href="remove-contaminated-reads.html#cb8-2" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="remove-contaminated-reads.html#cb8-3" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: Read decontamination</span>
-<span id="cb8-4"><a href="remove-contaminated-reads.html#cb8-4" tabindex="-1"></a><span class="bu">cd</span> resources/reads/trimmed</span>
-<span id="cb8-5"><a href="remove-contaminated-reads.html#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="remove-contaminated-reads.html#cb8-6" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="kw">`</span><span class="fu">ls</span> <span class="at">-1</span> <span class="pp">*</span>_1.fastq.gz <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/_1.fastq.gz//'</span><span class="kw">`</span></span>
-<span id="cb8-7"><a href="remove-contaminated-reads.html#cb8-7" tabindex="-1"></a>  <span class="cf">do</span></span>
-<span id="cb8-8"><a href="remove-contaminated-reads.html#cb8-8" tabindex="-1"></a>  <span class="ex">bbduk.sh</span> <span class="at">-Xmx3g</span> <span class="dt">\</span></span>
-<span id="cb8-9"><a href="remove-contaminated-reads.html#cb8-9" tabindex="-1"></a>    in1=<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
-<span id="cb8-10"><a href="remove-contaminated-reads.html#cb8-10" tabindex="-1"></a>    in2=<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
-<span id="cb8-11"><a href="remove-contaminated-reads.html#cb8-11" tabindex="-1"></a>    out1=decontam/<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
-<span id="cb8-12"><a href="remove-contaminated-reads.html#cb8-12" tabindex="-1"></a>    out2=decontam/<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
-<span id="cb8-13"><a href="remove-contaminated-reads.html#cb8-13" tabindex="-1"></a>    outm1=decontam/matchedphix/<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
-<span id="cb8-14"><a href="remove-contaminated-reads.html#cb8-14" tabindex="-1"></a>    outm2=decontam/matchedphix/<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
-<span id="cb8-15"><a href="remove-contaminated-reads.html#cb8-15" tabindex="-1"></a>    ref=~/bbmap/resources/phix174_ill.ref.fa.gz <span class="dt">\</span></span>
-<span id="cb8-16"><a href="remove-contaminated-reads.html#cb8-16" tabindex="-1"></a>    k=25 <span class="dt">\</span></span>
-<span id="cb8-17"><a href="remove-contaminated-reads.html#cb8-17" tabindex="-1"></a>    hdist=1 <span class="dt">\</span></span>
-<span id="cb8-18"><a href="remove-contaminated-reads.html#cb8-18" tabindex="-1"></a>    overwrite=True</span>
-<span id="cb8-19"><a href="remove-contaminated-reads.html#cb8-19" tabindex="-1"></a>  <span class="cf">done</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="remove-contaminated-reads.html#cb10-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb10-2"><a href="remove-contaminated-reads.html#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="remove-contaminated-reads.html#cb10-3" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: Read decontamination</span>
+<span id="cb10-4"><a href="remove-contaminated-reads.html#cb10-4" tabindex="-1"></a><span class="bu">cd</span> resources/reads/trimmed</span>
+<span id="cb10-5"><a href="remove-contaminated-reads.html#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="remove-contaminated-reads.html#cb10-6" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="kw">`</span><span class="fu">ls</span> <span class="at">-1</span> <span class="pp">*</span>_1.fastq.gz <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/_1.fastq.gz//'</span><span class="kw">`</span></span>
+<span id="cb10-7"><a href="remove-contaminated-reads.html#cb10-7" tabindex="-1"></a>  <span class="cf">do</span></span>
+<span id="cb10-8"><a href="remove-contaminated-reads.html#cb10-8" tabindex="-1"></a>  <span class="ex">bbduk.sh</span> <span class="at">-Xmx3g</span> <span class="dt">\</span></span>
+<span id="cb10-9"><a href="remove-contaminated-reads.html#cb10-9" tabindex="-1"></a>    in1=<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
+<span id="cb10-10"><a href="remove-contaminated-reads.html#cb10-10" tabindex="-1"></a>    in2=<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
+<span id="cb10-11"><a href="remove-contaminated-reads.html#cb10-11" tabindex="-1"></a>    out1=decontam/<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
+<span id="cb10-12"><a href="remove-contaminated-reads.html#cb10-12" tabindex="-1"></a>    out2=decontam/<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
+<span id="cb10-13"><a href="remove-contaminated-reads.html#cb10-13" tabindex="-1"></a>    outm1=decontam/matchedphix/<span class="va">$i</span><span class="dt">\_</span>1.fastq.gz <span class="dt">\</span></span>
+<span id="cb10-14"><a href="remove-contaminated-reads.html#cb10-14" tabindex="-1"></a>    outm2=decontam/matchedphix/<span class="va">$i</span><span class="dt">\_</span>2.fastq.gz <span class="dt">\</span></span>
+<span id="cb10-15"><a href="remove-contaminated-reads.html#cb10-15" tabindex="-1"></a>    ref=~/bbmap/resources/phix174_ill.ref.fa.gz <span class="dt">\</span></span>
+<span id="cb10-16"><a href="remove-contaminated-reads.html#cb10-16" tabindex="-1"></a>    k=25 <span class="dt">\</span></span>
+<span id="cb10-17"><a href="remove-contaminated-reads.html#cb10-17" tabindex="-1"></a>    hdist=1 <span class="dt">\</span></span>
+<span id="cb10-18"><a href="remove-contaminated-reads.html#cb10-18" tabindex="-1"></a>    overwrite=True</span>
+<span id="cb10-19"><a href="remove-contaminated-reads.html#cb10-19" tabindex="-1"></a>  <span class="cf">done</span></span></code></pre></div>
 </div>
-<div id="fastqc-on-decontaminated-reads" class="section level2" number="4.2">
+<div id="fastqc---multiqc-on-decontaminated-reads" class="section level2" number="4.2">
 <h2>
-<span class="header-section-number">4.2</span> FastQC on decontaminated reads<a class="anchor" aria-label="anchor" href="#fastqc-on-decontaminated-reads"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2</span> FastQC - MultiQC on decontaminated reads<a class="anchor" aria-label="anchor" href="#fastqc---multiqc-on-decontaminated-reads"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="remove-contaminated-reads.html#cb9-1" tabindex="-1"></a></span>
-<span id="cb9-2"><a href="remove-contaminated-reads.html#cb9-2" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb9-3"><a href="remove-contaminated-reads.html#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="remove-contaminated-reads.html#cb9-4" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: FastQC <span class="at">-</span> Getting read quality scores of decontaminated reads.</span>
-<span id="cb9-5"><a href="remove-contaminated-reads.html#cb9-5" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="remove-contaminated-reads.html#cb9-6" tabindex="-1"></a><span class="va">INPUTDIR</span><span class="op">=</span><span class="st">"resources/reads/trimmed/decontam"</span></span>
-<span id="cb9-7"><a href="remove-contaminated-reads.html#cb9-7" tabindex="-1"></a><span class="va">FASTQC</span><span class="op">=</span><span class="st">"results/qc/fastqc3"</span></span>
-<span id="cb9-8"><a href="remove-contaminated-reads.html#cb9-8" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${FASTQC}</span><span class="st">"</span></span>
-<span id="cb9-9"><a href="remove-contaminated-reads.html#cb9-9" tabindex="-1"></a><span class="ex">fastqc</span> <span class="st">"</span><span class="va">${INPUTDIR}</span><span class="st">"</span>/<span class="pp">*</span>.fastq.gz <span class="at">-o</span> <span class="st">"</span><span class="va">${FASTQC}</span><span class="st">"</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="remove-contaminated-reads.html#cb11-1" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="remove-contaminated-reads.html#cb11-2" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb11-3"><a href="remove-contaminated-reads.html#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="remove-contaminated-reads.html#cb11-4" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: FastQC <span class="at">-</span> Getting read quality scores of decontaminated reads.</span>
+<span id="cb11-5"><a href="remove-contaminated-reads.html#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="remove-contaminated-reads.html#cb11-6" tabindex="-1"></a><span class="va">INPUTDIR</span><span class="op">=</span><span class="st">"resources/reads/trimmed/decontam"</span></span>
+<span id="cb11-7"><a href="remove-contaminated-reads.html#cb11-7" tabindex="-1"></a><span class="va">FASTQC</span><span class="op">=</span><span class="st">"results/qc/fastqc3"</span></span>
+<span id="cb11-8"><a href="remove-contaminated-reads.html#cb11-8" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${FASTQC}</span><span class="st">"</span></span>
+<span id="cb11-9"><a href="remove-contaminated-reads.html#cb11-9" tabindex="-1"></a><span class="ex">fastqc</span> <span class="st">"</span><span class="va">${INPUTDIR}</span><span class="st">"</span>/<span class="pp">*</span>.fastq.gz <span class="at">-o</span> <span class="st">"</span><span class="va">${FASTQC}</span><span class="st">"</span></span></code></pre></div>
+<pre><code>## Warning in readLines(script_path): incomplete final line found on
+## 'workflow/scripts/multiqc_decontam.sh'</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="remove-contaminated-reads.html#cb13-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb13-2"><a href="remove-contaminated-reads.html#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="remove-contaminated-reads.html#cb13-3" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: MultiQC <span class="at">-</span> Getting summary of decontaminated read quality scores.</span>
+<span id="cb13-4"><a href="remove-contaminated-reads.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="remove-contaminated-reads.html#cb13-5" tabindex="-1"></a><span class="va">FASTQC</span><span class="op">=</span><span class="st">"results/qc/fastqc3"</span></span>
+<span id="cb13-6"><a href="remove-contaminated-reads.html#cb13-6" tabindex="-1"></a><span class="va">MULTIQC</span><span class="op">=</span><span class="st">"results/qc/multiqc3"</span></span>
+<span id="cb13-7"><a href="remove-contaminated-reads.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="remove-contaminated-reads.html#cb13-8" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${MULTIQC}</span><span class="st">"</span></span>
+<span id="cb13-9"><a href="remove-contaminated-reads.html#cb13-9" tabindex="-1"></a><span class="ex">multiqc</span> <span class="at">--force</span> <span class="at">--data-dir</span> <span class="st">"</span><span class="va">${FASTQC}</span><span class="st">"</span> <span class="at">-o</span> <span class="st">"</span><span class="va">${MULTIQC}</span><span class="st">"</span> <span class="at">--export</span></span></code></pre></div>
+<div class="inline-figure"><img src="results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg"></div>
 </div>
 <div id="seqkit-on-decontaminated-reads" class="section level2" number="4.3">
 <h2>
 <span class="header-section-number">4.3</span> Seqkit on decontaminated reads<a class="anchor" aria-label="anchor" href="#seqkit-on-decontaminated-reads"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="remove-contaminated-reads.html#cb10-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb10-2"><a href="remove-contaminated-reads.html#cb10-2" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="remove-contaminated-reads.html#cb10-3" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: Getting stats of the decontaminated reads.</span>
-<span id="cb10-4"><a href="remove-contaminated-reads.html#cb10-4" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="remove-contaminated-reads.html#cb10-5" tabindex="-1"></a><span class="va">INPUTDIR</span><span class="op">=</span><span class="st">"resources/reads/trimmed/decontam"</span></span>
-<span id="cb10-6"><a href="remove-contaminated-reads.html#cb10-6" tabindex="-1"></a><span class="va">SEQKIT</span><span class="op">=</span><span class="st">"results/qc/seqkit3"</span></span>
-<span id="cb10-7"><a href="remove-contaminated-reads.html#cb10-7" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${SEQKIT}</span><span class="st">"</span></span>
-<span id="cb10-8"><a href="remove-contaminated-reads.html#cb10-8" tabindex="-1"></a><span class="ex">seqkit</span> stat <span class="st">"</span><span class="va">${INPUTDIR}</span><span class="st">"</span>/<span class="pp">*</span>.fastq.gz <span class="op">&gt;</span><span class="st">"</span><span class="va">${SEQKIT}</span><span class="st">"</span>/seqkit_stats.txt</span></code></pre></div>
-<div class="inline-figure"><img src="results/qc/multiqc3/multiqc_plots/svg/mqc_fastqc_per_base_sequence_quality_plot_1.svg"></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="remove-contaminated-reads.html#cb14-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb14-2"><a href="remove-contaminated-reads.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="remove-contaminated-reads.html#cb14-3" tabindex="-1"></a><span class="bu">echo</span> PROGRESS: Getting stats of the decontaminated reads.</span>
+<span id="cb14-4"><a href="remove-contaminated-reads.html#cb14-4" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="remove-contaminated-reads.html#cb14-5" tabindex="-1"></a><span class="va">INPUTDIR</span><span class="op">=</span><span class="st">"resources/reads/trimmed/decontam"</span></span>
+<span id="cb14-6"><a href="remove-contaminated-reads.html#cb14-6" tabindex="-1"></a><span class="va">SEQKIT</span><span class="op">=</span><span class="st">"results/qc/seqkit3"</span></span>
+<span id="cb14-7"><a href="remove-contaminated-reads.html#cb14-7" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">${SEQKIT}</span><span class="st">"</span></span>
+<span id="cb14-8"><a href="remove-contaminated-reads.html#cb14-8" tabindex="-1"></a><span class="ex">seqkit</span> stat <span class="st">"</span><span class="va">${INPUTDIR}</span><span class="st">"</span>/<span class="pp">*</span>.fastq.gz <span class="op">&gt;</span><span class="st">"</span><span class="va">${SEQKIT}</span><span class="st">"</span>/seqkit_stats.txt</span></code></pre></div>
 </div>
 </div>
   <div class="chapter-nav">
@@ -156,7 +167,7 @@
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#remove-contaminated-reads"><span class="header-section-number">4</span> Remove Contaminated Reads</a></li>
 <li><a class="nav-link" href="#bbduk-read-decontamination"><span class="header-section-number">4.1</span> BBDuk read decontamination</a></li>
-<li><a class="nav-link" href="#fastqc-on-decontaminated-reads"><span class="header-section-number">4.2</span> FastQC on decontaminated reads</a></li>
+<li><a class="nav-link" href="#fastqc---multiqc-on-decontaminated-reads"><span class="header-section-number">4.2</span> FastQC - MultiQC on decontaminated reads</a></li>
 <li><a class="nav-link" href="#seqkit-on-decontaminated-reads"><span class="header-section-number">4.3</span> Seqkit on decontaminated reads</a></li>
 </ul>
 

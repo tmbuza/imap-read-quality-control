@@ -5,14 +5,14 @@ basic-yaml-file-for-read-qc-environment.yml
 conda-environment
 check-raw-reads-statistics
 statistics-of-raw-reads
-fastqc-on-raw-reads
+fastqc---multiqc-on-raw-reads
 trim-poor-reads
 bbduk-trimming-poor-reads
-fastqc-on-trimmed-reads
+fastqc---multiqc-on-trimmed-reads
 seqkit-on-trimmed-reads
 remove-contaminated-reads
 bbduk-read-decontamination
-fastqc-on-decontaminated-reads
+fastqc---multiqc-on-decontaminated-reads
 seqkit-on-decontaminated-reads
 view-processed-read-status
 imap-github-repos
