@@ -98,7 +98,7 @@ rule generate_rulegraph:
         """
 
 # Rule to generate a directory tree
-rule generate_tree:
+rule project_tree:
     output:
         directory("output"),
         "reports/project_tree.txt"

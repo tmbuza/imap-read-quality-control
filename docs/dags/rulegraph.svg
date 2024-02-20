@@ -31,7 +31,7 @@
 <g id="node3" class="node">
 <title>2</title>
 <path fill="none" stroke="#d86e56" stroke-width="2" d="M84.58,-180C84.58,-180 33.33,-180 33.33,-180 27.33,-180 21.33,-174 21.33,-168 21.33,-168 21.33,-156 21.33,-156 21.33,-150 27.33,-144 33.33,-144 33.33,-144 84.58,-144 84.58,-144 90.58,-144 96.58,-150 96.58,-156 96.58,-156 96.58,-168 96.58,-168 96.58,-174 90.58,-180 84.58,-180"/>
-<text text-anchor="middle" x="58.96" y="-158.12" font-family="sans" font-size="10.00">generate_tree</text>
+<text text-anchor="middle" x="58.96" y="-158.12" font-family="sans" font-size="10.00">project_tree</text>
 </g>
 <!-- 2&#45;&gt;1 -->
 <g id="edge8" class="edge">
