@@ -2,11 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
 .Rapp.history
 
 .snakemake
