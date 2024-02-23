@@ -12,3 +12,4 @@ data/*
 images/*
 results/*
 resources/*
+renv/
