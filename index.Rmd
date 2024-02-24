@@ -49,7 +49,7 @@ source("_common.R")
 
 <br>
 <br>
-![Book cover](images/read_qc.png){width=50%}
+![](images/read_qc.png){width=50%}
 
 ## Welcome {-}
 Welcome to the microbiome data quality control (QC)! In this segment of our Practical User Guides series, we venture into another chapter, dedicated to the critical process of "Read Quality Control" with precision QC tools.
