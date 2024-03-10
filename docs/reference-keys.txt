@@ -15,3 +15,5 @@ bbduk-read-decontamination
 fastqc-on-decontaminated-reads
 seqkit-on-decontaminated-reads
 view-processed-read-status
+imap-github-repos
+session-information

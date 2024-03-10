@@ -3,6 +3,8 @@
 .RData
 .Ruserdata
 
+.snakemake
+
 data/*
 images/*
 results/*
