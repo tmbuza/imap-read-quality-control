@@ -2,7 +2,7 @@
 title: "<big>IMAP:</big> Integrated Microbiome Analysis Pipelines"
 subtitle: "End-to-End Practical User Guides Using Integrated Approaches"
 date:
-- <b>2024-03-10</b>
+- <b>2024-03-17</b>
 author: Teresia Mrema-Buza
 site: bookdown::bookdown_site
 documentclass: book
@@ -52,5 +52,5 @@ description: |
 ## Welcome {-}
 Welcome to the microbiome data quality control (QC)! In this segment of our Practical User Guides series, we venture into another chapter, dedicated to the critical process of "Read Quality Control" with precision QC tools.
 
-Following the successful acquisition of sequencing reads from the Sequence Read Archive (SRA), our journey now brings us to a pivotal phase – Quality Control (QC). This chapter delves into the intricacies of ensuring the fidelity of your read data.
+Following the successful acquisition of sequencing reads from the Sequence Read Archive (SRA), our journey now brings us to a pivotal phase – Quality Control (QC). This chapter delves into the complexities of ensuring the fidelity of your read data.
 
