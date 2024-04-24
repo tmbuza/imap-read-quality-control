@@ -1,4 +1,4 @@
-# IMAP: Read Quality Control
+# IMAP PART 04: Read Quality Control
 
 Welcome to IMAP: Read Quality Control! This repository provides essential tools and guidelines for conducting quality control (QC) on microbiome sequencing data. By employing a variety of QC tools, we ensure the reliability and accuracy of your analysis. Let's dive into the QC process:
 
