@@ -16,5 +16,4 @@ fastqc---multiqc-on-decontaminated-reads
 seqkit-on-decontaminated-reads
 view-processed-read-status
 imap-github-repos
-read-qc-rulegraph
 session-information
